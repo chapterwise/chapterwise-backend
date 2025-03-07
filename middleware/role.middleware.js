@@ -12,4 +12,4 @@ function isAdminRole(req, res, next) {
     }
 };
 
-module.exports = verifyToken;
+module.exports = isAdminRole;
