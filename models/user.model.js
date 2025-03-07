@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 const { adminRoleConst, userRoleConst } = require("../utils/constants");
 
-const UserProfileModel = new mongoose.Schema({
+export const UserProfileModel = new mongoose.Schema({
     email : {
         type : String,
         default : ""
