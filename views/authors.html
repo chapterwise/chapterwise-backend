@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Authors</title>
+</head>
+<body>
+  <h1>Authors</h1>
+  <h2>Create a New Author</h2>
+  <form action="/author" method="POST">
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Mobile: <input type="text" name="mobile" required></label><br>
+    <button type="submit">Create Author</button>
+  </form>
+  
+  <h2>Existing Authors</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example row -->
+      <tr>
+        <td>1</td>
+        <td>author@example.com</td>
+        <td>1234567890</td>
+        <td>
+          <form action="/author/1?_method=PATCH" method="POST" style="display:inline;">
+            <button type="submit">Edit</button>
+          </form>
+          <form action="/author/1?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>

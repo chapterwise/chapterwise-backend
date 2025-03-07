@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Carts</title>
+</head>
+<body>
+  <h1>Carts</h1>
+  <h2>Create a New Cart</h2>
+  <form action="/cart" method="POST">
+    <label>User ID: <input type="text" name="userId" required></label><br>
+    <label>Items (enter as JSON e.g., [{"bookId": "id1", "quantity": 2}]):</label><br>
+    <textarea name="items" rows="4" cols="50" required></textarea><br>
+    <button type="submit">Create Cart</button>
+  </form>
+  
+  <h2>Existing Carts</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Items</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example row -->
+      <tr>
+        <td>1</td>
+        <td>userIdExample</td>
+        <td>[{ "bookId": "bookId1", "quantity": 2 }]</td>
+        <td>
+          <form action="/cart/1?_method=PATCH" method="POST" style="display:inline;">
+            <button type="submit">Edit</button>
+          </form>
+          <form action="/cart/1?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>

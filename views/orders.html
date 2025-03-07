@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Orders</title>
+</head>
+<body>
+  <h1>Orders</h1>
+  <h2>Place an Order</h2>
+  <!-- The order placement form here assumes the order is created based on the user’s cart.
+       The address is provided as a text input (or JSON) -->
+  <form action="/order" method="POST">
+    <label>Address (enter as JSON or text):</label><br>
+    <textarea name="address" rows="4" cols="50" required></textarea><br>
+    <button type="submit">Place Order</button>
+  </form>
+  
+  <h2>Existing Orders</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Item Total</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example row -->
+      <tr>
+        <td>1</td>
+        <td>$25.00</td>
+        <td>Order Placed</td>
+        <td>
+          <form action="/order/1?_method=PATCH" method="POST" style="display:inline;">
+            <button type="submit">Update</button>
+          </form>
+          <form action="/order/1?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>
