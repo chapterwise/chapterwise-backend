@@ -23,10 +23,10 @@ router.delete("/subcategory/:id", [verifyToken, isAdmin] , catSubGenreController
 
 // ---------- Genre Routes ----------
 
-router.get("/genres", catSubGenreController.getAllGenres);
-router.get("/genre/:id", catSubGenreController.getOneGenre);
-router.post("/genre", [verifyToken, isAdmin] , catSubGenreController.createGenre);
-router.patch("/genre/:id", [verifyToken, isAdmin] , catSubGenreController.updateGenre);
-router.delete("/genre/:id", [verifyToken, isAdmin] , catSubGenreController.deleteGenre);
+router.get("/all", catSubGenreController.getAllGenres);
+router.get("/:id", catSubGenreController.getOneGenre);
+router.post("/", [verifyToken, isAdmin] , catSubGenreController.createGenre);
+router.patch("/:id", [verifyToken, isAdmin] , catSubGenreController.updateGenre);
+router.delete("/:id", [verifyToken, isAdmin] , catSubGenreController.deleteGenre);
 
 module.exports = router;

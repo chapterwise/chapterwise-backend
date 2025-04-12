@@ -1,17 +1,18 @@
 const mongoose=require("mongoose");
-const {CategoryModel} = require("./category.model");
-const { SubCategoryModel } = require("./subcategory");
 
-export const GenreModel = mongoose.Schema({
-    category : {
-        type : CategoryModel
-    },
-    subCategory : {
-        type : SubCategoryModel
+const GenreModel = mongoose.Schema({
+    subCategoryId : {
+        type : String,
+        required: true,
     },
     name : {
         type: String
     }
 });
 
-module.exports = mongoose.model("genreDB", GenreModel);
+const genreDB = mongoose.model("genreDB", GenreModel);
+
+module.exports = {
+    GenreModel,
+    genreDB
+}

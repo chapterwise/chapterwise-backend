@@ -1,8 +1,8 @@
 // controllers/categoryGenreControllers.js
 
-const categoryDB = require("../models/category.model");
-const subCategoryDB = require("../models/subcategory");
-const genreDB = require("../models/genre.model");
+const {categoryDB} = require("../models/category.model");
+const {subCategoryDB} = require("../models/subcategory");
+const {genreDB} = require("../models/genre.model");
 
 // ============== Category Controllers ==============
 
@@ -82,9 +82,14 @@ const deleteCategory = async (req, res) => {
 const createSubCategory = async (req, res) => {
     try {
         const { name, keyIndex, categoryId } = req.body;
+        const category = await categoryDB.findById(categoryId);
+        if(!category){
+            res.status(404).json({result : "Failed", message : "Category Not Found"});
+            return;
+        }
         const subCategory = new subCategoryDB({ name, keyIndex, categoryId });
         await subCategory.save();
-        res.status(201).json({ message: "SubCategory created successfully", subCategory });
+        res.status(200).json({ message: "SubCategory created successfully", subCategory });
     } catch (err) {
         console.error("createSubCategory error:", err);
         res.status(500).json({ error: "Failed to create subcategory" });
@@ -153,8 +158,15 @@ const deleteSubCategory = async (req, res) => {
 // Create a new Genre
 const createGenre = async (req, res) => {
     try {
-        const { category, subCategory, name } = req.body;
-        const genre = new genreDB({ category, subCategory, name });
+        const { subCategoryId, name } = req.body;
+        const subCategory = subCategoryDB.findById(subCategoryId, {_id : 1});
+        console.log(subCategory);
+        //TODO : To be corrected. Bug Here
+        if(!subCategory){
+            res.status(404).json({result : "Failed", message : "Sub Category Not Found"});
+            return;
+        }
+        const genre = new genreDB({ subCategoryId, name });
         await genre.save();
         res.status(201).json({ message: "Genre created successfully", genre });
     } catch (err) {
