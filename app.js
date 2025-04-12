@@ -45,6 +45,7 @@ app.use(expressWinston.logger({
 const userRouter = require("./router/user.router");
 const authorRouter = require("./router/author.router");
 const genreRouter = require("./router/genre.router");
+const bookRouter = require("./router/books.router");
 
 app.use(express.urlencoded({
     extended: true
@@ -60,6 +61,7 @@ app.get("/", (req, res) => {
 app.use("/v1/user", userRouter);
 app.use("/v1/author", authorRouter);
 app.use("/v1/genre", genreRouter);
+app.use("/v1/book", bookRouter);
 
 app.listen(process.env.PORT || 4000);
 

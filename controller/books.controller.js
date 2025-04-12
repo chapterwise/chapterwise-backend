@@ -1,9 +1,20 @@
-const bookDB = require("../models/book.model");
+const { authorDB } = require("../models/author.model");
+const {bookDB} = require("../models/books.model");
 
 // Create a new Book
 const createBook = async (req, res) => {
     try {
         const { name, authorId, price, sku, OwnerId, language, tags, genres } = req.body;
+
+        //TODO : CHECK IF ALL GENRES EXIST
+
+        const author = await authorDB.findById(authorId);
+
+        if(!author){
+            res.status(404).json({result : "Failed", message : "Author Not Found"});
+            return;
+        }
+
         const book = new bookDB({ name, authorId, price, sku, OwnerId, language, tags, genres });
         await book.save();
         res.status(201).json({ message: "Book created successfully", book });

@@ -9,7 +9,7 @@ const BookModel = new mongoose.Schema({
         required: true,
     },
     authorId: {
-        type: AuthorModel,
+        type: String,
         required: true
     },
     price: {
@@ -21,7 +21,7 @@ const BookModel = new mongoose.Schema({
         required: true
     },
     OwnerId: {
-        type: UserProfileModel,
+        type: String,
         required: true
     },
     language: {
@@ -34,7 +34,7 @@ const BookModel = new mongoose.Schema({
         default: []
     },
     genres: {
-        type: [GenreModel]
+        type: [String]
     }
 });
 
