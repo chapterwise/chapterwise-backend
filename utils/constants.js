@@ -1,10 +1,20 @@
-export const userRoleConst = "user";
-export const adminRoleConst = "admin";
+const userRoleConst = "user";
+const adminRoleConst = "admin";
 
 
 // Address Names
-export const HOMEADDRESS = "home";
-export const FLATADDRESS = "flat";
-export const WORKADDRESS = "work";
+const HOMEADDRESS = "home";
+const FLATADDRESS = "flat";
+const WORKADDRESS = "work";
 
-export const errorMessage401AuthIssue = "Access denied"
+const errorMessage401AuthIssue = "Access denied";
+
+
+module.exports = {
+    userRoleConst,
+    adminRoleConst,
+    HOMEADDRESS,
+    FLATADDRESS,
+    WORKADDRESS,
+    errorMessage401AuthIssue
+}

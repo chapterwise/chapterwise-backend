@@ -1,7 +1,7 @@
-const mongoose=require("mongoose");
+const mongoose = require('mongoose');
 const { adminRoleConst, userRoleConst } = require("../utils/constants");
 
-export const UserProfileModel = new mongoose.Schema({
+const UserProfileModel = new mongoose.Schema({
     email : {
         type : String,
         default : ""
@@ -12,14 +12,24 @@ export const UserProfileModel = new mongoose.Schema({
     },
     mobile : {
         type : Number,
-        required: true
+        required: true,
     },
     role: {
         type : String,
         required: true,
         default : userRoleConst,
         Options : [userRoleConst, adminRoleConst]
+    },
+    name : {
+        type: String,
+        required : true,
+        default : ""
     }
 });
 
-module.exports = mongoose.model('userDB', UserProfileModel);
+userDB = mongoose.model('userDB', UserProfileModel),
+
+module.exports = {
+    userDB,
+    UserProfileModel
+}
