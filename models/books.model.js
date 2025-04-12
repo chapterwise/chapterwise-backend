@@ -3,7 +3,7 @@ const { AuthorModel } = require("./author.model");
 const { UserProfileModel } = require("./user.model");
 const { GenreModel } = require("./genre.model");
 
-export const BookModel = new mongoose.Schema({
+const BookModel = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -38,4 +38,9 @@ export const BookModel = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('bookDB', BookModel);
+const bookDB = mongoose.model('bookDB', BookModel);
+
+module.exports = {
+    bookDB,
+    BookModel
+}

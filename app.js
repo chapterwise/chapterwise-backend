@@ -42,9 +42,8 @@ app.use(expressWinston.logger({
     }
 }))
 
-const dashboardRouter = require("./router/dashboard.router");
 const userRouter = require("./router/user.router");
-
+const authorRouter = require("./router/author.router");
 
 app.use(express.urlencoded({
     extended: true
@@ -58,6 +57,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/v1/user", userRouter);
+app.use("/v1/author", authorRouter);
 
 app.listen(process.env.PORT || 4000);
 

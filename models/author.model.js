@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
 
-export const AuthorModel = new mongoose.Schema({
+const AuthorModel = new mongoose.Schema({
     name : {
         type : String,
         required : true,
@@ -15,4 +15,9 @@ export const AuthorModel = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('authorDB', AuthorModel);
+const authorDB = mongoose.model('authorDB', AuthorModel);
+
+module.exports = {
+    AuthorModel,
+    authorDB
+};

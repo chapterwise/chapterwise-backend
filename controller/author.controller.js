@@ -1,12 +1,14 @@
-const authorDB = require("../models/author.model");
+const { logger } = require("../logger");
+const {authorDB} = require("../models/author.model");
 
 // Create a new author
 const createNewAuthor = async (req, res) => {
+    logger.info("In Create New Author Function")
     try {
         const { name, penName, Origin } = req.body;
         const author = new authorDB({ name, penName, Origin });
         await author.save();
-        res.status(201).json({ message: "Author created successfully", author });
+        res.status(201).json({ result: "Author created successfully", data : author });
     } catch (err) {
         console.error("createNewAuthor error:", err);
         res.status(500).json({ error: "Failed to create author" });
@@ -17,7 +19,7 @@ const createNewAuthor = async (req, res) => {
 const getAllAuthors = async (req, res) => {
     try {
         const authors = await authorDB.find({});
-        res.status(200).json({ authors });
+        res.status(200).json({ result: "Success", data : authors });
     } catch (err) {
         console.error("getAllAuthors error:", err);
         res.status(500).json({ error: "Failed to fetch authors" });
@@ -32,7 +34,7 @@ const getOneAuthor = async (req, res) => {
         if (!author) {
             return res.status(404).json({ error: "Author not found" });
         }
-        res.status(200).json({ author });
+        res.status(200).json({ result : "Success", data : author });
     } catch (err) {
         console.error("getOneAuthor error:", err);
         res.status(500).json({ error: "Failed to fetch author" });
@@ -48,7 +50,7 @@ const updateAuthor = async (req, res) => {
         if (!author) {
             return res.status(404).json({ error: "Author not found" });
         }
-        res.status(200).json({ message: "Author updated successfully", author });
+        res.status(200).json({ result: "Success", data : author });
     } catch (err) {
         console.error("updateAuthor error:", err);
         res.status(500).json({ error: "Failed to update author" });
