@@ -46,6 +46,8 @@ const userRouter = require("./router/user.router");
 const authorRouter = require("./router/author.router");
 const genreRouter = require("./router/genre.router");
 const bookRouter = require("./router/books.router");
+const cartRouter = require("./router/cart.router");
+
 
 app.use(express.urlencoded({
     extended: true
@@ -62,6 +64,7 @@ app.use("/v1/user", userRouter);
 app.use("/v1/author", authorRouter);
 app.use("/v1/genre", genreRouter);
 app.use("/v1/book", bookRouter);
+app.use("/v1/cart", cartRouter);
 
 app.listen(process.env.PORT || 4000);
 
